@@ -233,8 +233,14 @@ if st.button("Analyze project risk", type="primary", use_container_width=True):
 
     health = result.get("project_health", "UNKNOWN")
     health_icon = {"GREEN": "🟢", "AMBER": "🟠", "RED": "🔴"}.get(health, "⚪")
+    health_labels = {
+        "GREEN": "ON TRACK",
+        "AMBER": "NEEDS ATTENTION",
+        "RED": "AT RISK"
+    }
+    health_label = health_labels.get(health, health)
 
-    st.subheader(f"{health_icon} Project Health: {health}")
+    st.subheader(f"{health_icon} Project Health: {health_label}")
     st.write(result.get("health_reason", ""))
     st.caption(f"Analysis source: {source}")
 
